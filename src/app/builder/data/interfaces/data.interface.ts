@@ -1,0 +1,18 @@
+export interface IBuilderData {
+  fonts: string[];
+  families: string[];
+  styles: string[];
+  icons: IBuilderDataIcons;
+}
+
+export interface IBuilderDataIcons {
+  [name: string]: IBuilderDataIcon;
+}
+
+export interface IBuilderDataIcon {
+  name: string;
+  description: string;
+  fonts: string[];
+  classes: Record<string, string>;
+  tags: string[];
+}

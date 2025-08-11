@@ -1,0 +1,48 @@
+@use "sass:map";
+@use "sass:string";
+@use "./variables" as vars;
+
+@font-face {
+  font-display: block;
+  font-family: uicons-bold-rounded;
+  src:
+    url("../webfonts/uicons-bold-rounded.woff") format("woff"),
+    url("../webfonts/uicons-bold-rounded.woff2") format("woff2"),
+    url("../webfonts/uicons-bold-rounded.eot") format("embedded-opentype");
+}
+
+@each $selector in vars.$FI-SELECTORS {
+  #{$selector} {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+}
+
+@each $selector in vars.$FI-SELECTORS {
+  #{$selector}[class^="fi-br-"]::before,
+  #{$selector}[class*="fi-br-"]::before {
+    display: inherit;
+    font-family: uicons-bold-rounded, serif !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@each $iconName, $iconFonts in vars.$FI-MONOTONE-ICONS {
+  @if map.has-key($iconFonts, "bold-rounded") {
+    .fi-br-#{$iconName}::before {
+      content: "#{map.get($iconFonts, "bold-rounded")}";
+    }
+  }
+}

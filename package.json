@@ -1,0 +1,46 @@
+{
+  "name": "flaticon-icons",
+  "version": "1.0.0",
+  "description": "Package to scrape and download icons from FlatIcons",
+  "main": "main.js",
+  "scripts": {
+    "cache:clear": "tsx src/main.ts cache clear",
+    "build": "tsx src/main.ts build all",
+    "build:icons": "tsx src/main.ts build icons",
+    "build:svgs": "tsx src/main.ts build svgs",
+    "build:fonts": "tsx src/main.ts build fonts",
+    "build:data": "tsx src/main.ts build data",
+    "build:styles": "tsx src/main.ts build styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethalium/flaticon-icons.git"
+  },
+  "keywords": [
+    "flaticon",
+    "scraping"
+  ],
+  "author": "Ethalium",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ethalium/flaticon-icons/issues"
+  },
+  "homepage": "https://github.com/ethalium/flaticon-icons#readme",
+  "dependencies": {
+    "@twbs/fantasticon": "^3.1.0",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.2.0",
+    "@types/xmldom": "^0.1.34",
+    "chalk": "^5.5.0",
+    "commander": "^14.0.0",
+    "glob": "^11.0.3",
+    "lodash": "^4.17.21",
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.6.2",
+    "sass": "^1.90.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2",
+    "xmldom": "^0.6.0",
+    "xpath": "^0.0.34"
+  }
+}

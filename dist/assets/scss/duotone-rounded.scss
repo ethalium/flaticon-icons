@@ -1,0 +1,58 @@
+@use "sass:map";
+@use "sass:string";
+@use "./variables" as vars;
+
+@font-face {
+  font-display: block;
+  font-family: uicons-duotone-rounded;
+  src:
+    url("../webfonts/uicons-duotone-rounded.woff") format("woff"),
+    url("../webfonts/uicons-duotone-rounded.woff2") format("woff2"),
+    url("../webfonts/uicons-duotone-rounded.eot") format("embedded-opentype");
+}
+
+@each $selector in vars.$FI-SELECTORS {
+  #{$selector} {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+}
+
+@each $selector in vars.$FI-SELECTORS {
+  #{$selector}[class^="fi-dr-"]::before,
+  #{$selector}[class*="fi-dr-"]::before,
+  #{$selector}[class^="fi-dr-"]::after,
+  #{$selector}[class*="fi-dr-"]::after {
+    position: absolute;
+    display: inherit;
+    font-family: uicons-duotone-rounded, serif !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@each $iconName, $iconFonts in vars.$FI-DUOTONE-ICONS {
+  @if map.has-key($iconFonts, "duotone-rounded") {
+    .fi-dr-#{$iconName}::before {
+      color: var(--fi-primary-color, inherit);
+      opacity: var(--fi-primary-opacity, 1);
+      content: "#{map.get(map.get($iconFonts, 'duotone-rounded'), 'dark')}";
+    }
+    .fi-dr-#{$iconName}::after {
+      color: var(--fi-secondary-color, inherit);
+      opacity: var(--fi-secondary-opacity, 0.5);
+      content: "#{map.get(map.get($iconFonts, 'duotone-rounded'), 'light')}";
+    }
+  }
+}
