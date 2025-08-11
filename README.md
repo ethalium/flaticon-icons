@@ -1,6 +1,6 @@
 <p align="center" style="font-size: 40px;">Scraper/Builder for <a href="https://www.flaticon.com/uicons/interface-icons" target="_blank">FlatIcon Interface Icons</a></p>
 
-![flaticon-icons](https://raw.githubusercontent.com/ethalium/flaticon-icons/main/preview.png "flaticon-icons preview")
+![flaticon-icons](https://raw.githubusercontent.com/ethalium/flaticon-icons/refs/heads/main/preview.png "flaticon-icons preview")
 
 Because it looks like the original [FlatIcon Repository](https://github.com/freepik-company/flaticon-uicons) is not maintained actively anymore, I created this project to get all available icons from
 the [FlatIcon Website](https://www.flaticon.com/uicons/interface-icons) by downloading the information about all icons and their SVGs. With the SVGs the script builds the fonts and styles.
