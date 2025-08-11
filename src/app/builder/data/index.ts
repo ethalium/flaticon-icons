@@ -82,13 +82,9 @@ export class BuilderData {
             name: fontIcon.name,
             description: fontIcon.description,
             tags: fontIcon.tags,
-            fonts: [],
             classes: {},
           };
         }
-
-        // add font
-        items[fontIcon.name].fonts.push(font);
 
         // add classes
         items[fontIcon.name].classes[font] = `${fontData.classPrefix}-${fontIcon.name}`;
@@ -98,7 +94,6 @@ export class BuilderData {
 
     // sort icon data
     for(let key of Object.keys(items)){
-      items[key]['fonts'] = items[key]['fonts'].sort();
       items[key]['classes'] = sortObjectKeys(items[key]['classes']);
     }
 
@@ -207,7 +202,6 @@ export class BuilderData {
 
       // create icons
       const contentIconsData = structuredClone(data.icons);
-      Object.values(data.icons).map(_ => { delete _.fonts });
       const contentIcons = `
         import { FlatIcons } from './types.data';
         

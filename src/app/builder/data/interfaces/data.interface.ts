@@ -12,7 +12,6 @@ export interface IBuilderDataIcons {
 export interface IBuilderDataIcon {
   name: string;
   description: string;
-  fonts: string[];
   classes: Record<string, string>;
   tags: string[];
 }
