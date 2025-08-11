@@ -59,3 +59,11 @@ export function deleteFile(file: string): void {
     });
   }
 }
+
+export function sortObjectKeys<T extends object>(obj: T): T {
+  const sorted: any = {};
+  Object.keys(obj).sort().map(key => {
+    sorted[key] = obj[key];
+  });
+  return sorted as T;
+}

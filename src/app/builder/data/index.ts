@@ -1,6 +1,6 @@
 import {Caching} from "../../utils/cache.utils";
 import {IBuilderData, IBuilderDataIcons} from "./interfaces/data.interface";
-import {deleteDir, writeFile} from "../../utils/common.utils";
+import {deleteDir, sortObjectKeys, writeFile} from "../../utils/common.utils";
 import {Vars} from "../../vars";
 import {Logger} from "../../utils/logger.utils";
 import {BuilderIcons} from "../icons";
@@ -72,7 +72,11 @@ export class BuilderData {
     // build items
     for(const [font, fontIcons] of Object.entries(icons)){
       for(let fontIcon of fontIcons){
+
+        // get font data
         const fontData = fonts[font];
+
+        // create icon font if not exists
         if(!Object.keys(items).includes(fontIcon.name)){
           items[fontIcon.name] = {
             name: fontIcon.name,
@@ -82,13 +86,24 @@ export class BuilderData {
             classes: {},
           };
         }
+
+        // add font
         items[fontIcon.name].fonts.push(font);
+
+        // add classes
         items[fontIcon.name].classes[font] = `${fontData.classPrefix}-${fontIcon.name}`;
+
       }
     }
 
+    // sort icon data
+    for(let key of Object.keys(items)){
+      items[key]['fonts'] = items[key]['fonts'].sort();
+      items[key]['classes'] = sortObjectKeys(items[key]['classes']);
+    }
+
     // return items
-    return items;
+    return sortObjectKeys(items);
 
   }
 
@@ -185,7 +200,7 @@ export class BuilderData {
         export interface FlatIcon {
           name: string;
           description: string;
-          classes: Record<FlatIconFont, string>;
+          classes: { [key in FlatIconFont]?: string };
           tags: string[];
         }
       `;

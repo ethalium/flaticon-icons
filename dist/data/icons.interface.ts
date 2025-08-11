@@ -63,6 +63,6 @@ export type FlatIcons = Record<string, FlatIcon>;
 export interface FlatIcon {
   name: string;
   description: string;
-  classes: Record<FlatIconFont, string>;
+  classes: { [key in FlatIconFont]?: string };
   tags: string[];
 }
