@@ -37,7 +37,7 @@ export class BuilderIcons {
             description: icon.description !== icon.name ? icon.description : icon.nameDetail,
             font: icon.font,
             family: icon.familyName,
-            style: icon.styleName,
+            weight: icon.styleName,
             tags: icon.tags.split(',').map(_ => _.trim()).filter(_ => !!_),
           })
 

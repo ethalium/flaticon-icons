@@ -41,17 +41,17 @@ export class BuilderData {
   }
 
   /**
-   * Asynchronously processes the given data to extract and build a unique list of style identifiers.
+   * Builds a list of unique weight categories from the given icons object.
    *
-   * @param {IBuilderIcons} icons - The input data object containing icon information with keys representing categories or styles.
-   * @return {Promise<string[]>} A promise that resolves to an array of unique style names extracted from the input data.
+   * @param {IBuilderIcons} icons - The icons object whose keys are processed to extract weight categories.
+   * @return {Promise<string[]>} A sorted array of unique weight categories derived from the icons object.
    */
-  private static async buildStyles(icons: IBuilderIcons): Promise<string[]> {
+  private static async buildWeights(icons: IBuilderIcons): Promise<string[]> {
     const items: string[] = [];
     for(let key of Object.keys(icons)){
-      const style = key === 'brands' ? null : key.split('-')[0];
-      if(style && !items.includes(style)){
-        items.push(style);
+      const weight = key === 'brands' ? null : key.split('-')[0];
+      if(weight && !items.includes(weight)){
+        items.push(weight);
       }
     }
     return items.sort();
@@ -103,10 +103,10 @@ export class BuilderData {
   }
 
   /**
-   * Builds and retrieves builder data composed of icon families, font styles, and icons.
+   * Builds and retrieves builder data composed of icon families, font weights, and icons.
    * The method fetches and organizes icon-related information into a structured format.
    *
-   * @return {Promise<IBuilderData>} A promise that resolves to an object containing font data, families, styles, and icons.
+   * @return {Promise<IBuilderData>} A promise that resolves to an object containing font data, families, weights, and icons.
    */
   static async build(): Promise<IBuilderData> {
     return Caching.wrap(CACHE_KEY, async () => {
@@ -115,7 +115,7 @@ export class BuilderData {
       const data: IBuilderData = {
         fonts: [],
         families: [],
-        styles: [],
+        weights: [],
         icons: {},
       };
 
@@ -132,9 +132,9 @@ export class BuilderData {
       data.families = await this.buildFamilies(icons);
       Logger.info(`- Added icon families: ${data.families.join(', ')}`);
 
-      // add styles
-      data.styles = await this.buildStyles(icons);
-      Logger.info(`- Added icon styles: ${data.styles.join(', ')}`);
+      // add weights
+      data.weights = await this.buildWeights(icons);
+      Logger.info(`- Added icon weights: ${data.weights.join(', ')}`);
 
       // add icons
       data.icons = await this.buildIcons(icons, fonts);
@@ -163,12 +163,12 @@ export class BuilderData {
         export type FlatIconFamily = ${data.families.map(_ => `'${_}'`).join(' | ')};
         
         /**
-         * Represents the type of a flat icon.
+         * Represents the weight of a flat icon.
          *
-         * This type defines the visual style or category of an icon, determining
+         * This type defines the visual weight or category of an icon, determining
          * its overall appearance or classification.
          */
-        export type FlatIconStyle = ${data.styles.map(_ => `'${_}'`).join(' | ')};
+        export type FlatIconWeight = ${data.weights.map(_ => `'${_}'`).join(' | ')};
         
         /**
          * Represents a collection of flat icons where each icon is identified by a unique string key.

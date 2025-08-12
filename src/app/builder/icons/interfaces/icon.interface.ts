@@ -7,6 +7,6 @@ export interface IBuilderIcon {
   description: string;
   font: string;
   family: string;
-  style: string;
+  weight: string;
   tags: string[];
 }

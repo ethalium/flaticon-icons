@@ -16,35 +16,6 @@ export class Vars {
      */
     ICONS: (page: number = 1): string => `https://www.flaticon.com/ajax/icon-fonts-most-downloaded/${page}`,
 
-    /**
-     * Generates the URL for a stylesheet link based on the provided style family.
-     * The input `styleFamily` string has its '/' replaced with '-' to match
-     * the naming convention used in the URL structure.
-     *
-     * @param {string} styleFamily - The style family name used to generate the stylesheet URL.
-     * @returns {string} The complete URL string for the corresponding stylesheet.
-     */
-    STYLESHEET: (styleFamily: string): string => {
-      styleFamily = styleFamily.replace('/', '-');
-      return `https://cdn-uicons.flaticon.com/3.0.0/uicons-${styleFamily}/css/uicons-${styleFamily}.css`;
-    },
-
-    /**
-     * Generates an array of URLs to different webfont file formats for the specified style family.
-     * The function replaces any '/' character in the style family with a '-' character before creating the URLs.
-     *
-     * @param {string} styleFamily - The style family identifier that specifies the font style.
-     * @returns {string[]} An array of URLs pointing to the .woff2, .woff, and .eot versions of the webfonts.
-     */
-    WEBFONTS: (styleFamily: string): string[] => {
-      styleFamily = styleFamily.replace('/', '-');
-      return [
-        `https://cdn-uicons.flaticon.com/3.0.0/uicons-${styleFamily}/webfonts/uicons-${styleFamily}.woff2`,
-        `https://cdn-uicons.flaticon.com/3.0.0/uicons-${styleFamily}/webfonts/uicons-${styleFamily}.woff`,
-        `https://cdn-uicons.flaticon.com/3.0.0/uicons-${styleFamily}/webfonts/uicons-${styleFamily}.eot#iefix`,
-      ];
-    },
-
   };
 
 

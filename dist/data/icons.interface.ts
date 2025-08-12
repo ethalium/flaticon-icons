@@ -31,12 +31,12 @@ export type FlatIconFont =
 export type FlatIconFamily = "brands" | "chubby" | "rounded" | "straight";
 
 /**
- * Represents the type of a flat icon.
+ * Represents the weight of a flat icon.
  *
- * This type defines the visual style or category of an icon, determining
+ * This type defines the visual weight or category of an icon, determining
  * its overall appearance or classification.
  */
-export type FlatIconStyle = "bold" | "duotone" | "regular" | "solid" | "thin";
+export type FlatIconWeight = "bold" | "duotone" | "regular" | "solid" | "thin";
 
 /**
  * Represents a collection of flat icons where each icon is identified by a unique string key.

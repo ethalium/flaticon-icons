@@ -1,7 +1,7 @@
 export interface IBuilderData {
   fonts: string[];
   families: string[];
-  styles: string[];
+  weights: string[];
   icons: IBuilderDataIcons;
 }
 
